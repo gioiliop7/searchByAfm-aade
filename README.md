@@ -20,3 +20,7 @@ See the general info for this service here
 - AfmInfo2
 - Electron
 - Electron forge
+
+## Download link
+Only windows version available only, soon macOs and Ubuntu.
+https://bit.ly/3Um4gJy
