@@ -3,7 +3,6 @@
 Search by afm is an electron app to help you find the publicity records of a company from AADE (Independent Public Revenue Authority)
 
 **Internet Connection Required** 
-
 To use it you should go to the path "resources\app\" and create a config.json with your credentials.
 For help, see config-example.json file
 
@@ -23,5 +22,9 @@ See the general info for this service here
 - Electron forge
 
 ## Download link
-Only windows version available, soon macOs and Ubuntu.
+Only windows version available only, soon macOs and Ubuntu.
 https://bit.ly/3Um4gJy
+
+### Contributions and thanks to
+Feel free to contribute to project and help me to improve it.
+Thanks to [Stavros Melidoniotis](https://github.com/stavros-melidoniotis) for his help to export the package on another systems.
