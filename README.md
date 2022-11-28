@@ -22,7 +22,7 @@ See the general info for this service here
 - Electron forge
 
 ## Download link
-Only windows version available only, soon macOs and Ubuntu.
+Only windows and ubuntu version available, soon macOs.
 https://bit.ly/3Um4gJy
 
 ### Contributions and thanks to
