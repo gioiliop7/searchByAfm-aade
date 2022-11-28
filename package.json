@@ -1,0 +1,57 @@
+{
+  "name": "findbyafm",
+  "productName": "Search by Afm",
+  "version": "1.0.0",
+  "description": "Search a business by afm using AADE API",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "make-mac": "electron-forge make --platform darwin",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "author": "Giorgos Iliopoulos",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.3",
+    "electron": "^21.3.1"
+  },
+  "dependencies": {
+    "@electron-forge/maker-deb": "^6.0.3",
+    "@electron-forge/maker-squirrel": "^6.0.3",
+    "@electron-forge/maker-zip": "^6.0.3",
+    "afm-info2": "^0.1.4",
+    "electron-context-menu": "^3.6.0",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./assets/aade.gr-favicon",
+        "name": "Search by afm",
+        "executableName": "findbyafm"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "Search by Afm",
+            "icon":"./assets/aade.gr-favicon.ico"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "icon": "./assets/aade.gr-favicon.png"
+          }
+        }
+      ]
+    }
+  }
+}
