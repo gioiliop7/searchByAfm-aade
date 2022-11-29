@@ -36,9 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
   function convertDate(inputFormat) {
-    function pad(s) { return (s < 10) ? '0' + s : s; }
-    var d = new Date(inputFormat)
-    return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/')
+    function pad(s) {
+      return s < 10 ? "0" + s : s;
+    }
+    var d = new Date(inputFormat);
+    return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join("/");
   }
   document.getElementById("submit").addEventListener("click", handleSubmit);
   async function handleSubmit(e) {
@@ -51,15 +53,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const jsonPath = path.join(__dirname, "config.json");
-    const rawData = fs.readFileSync(jsonPath);
-    const jsonData = JSON.parse(rawData);
-    const userName = jsonData.username;
-    const afmFor = jsonData.afm;
-    const password = jsonData.password;
+    // check if config.json exists before reading it
+    const configPath = path.join(__dirname, "config.json");
+    if (!fs.existsSync(configPath)) {
+      ipcRenderer.send("alert", "Δεν βρέθηκε το αρχείο config.json");
+      return;
+    }
+
+    const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    const { username, password, afm } = config;
 
     // Last param is the AFM you make requests on behalf of.
-    const afmInfo = new AfmInfo(userName, password, afmFor);
+    const afmInfo = new AfmInfo(username, password, afm);
 
     // Get service version.
     afmInfo.version().then(console.log).catch(console.error);
@@ -87,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const postalAddressDesc = businessData.postalAreaDescription;
       const postalZip = businessData.postalZipCode;
       let registrationDate = businessData.registDate;
-      registrationDate = convertDate(registrationDate)
+      registrationDate = convertDate(registrationDate);
       const address = `${postalAddress} ${postalAddressNum}, ${postalAddressDesc}, ${postalZip}`;
       const doyString = `ΔΟΥ:${doy}-(${doyID})`;
       document.getElementById("result").style.display = "flex";
@@ -98,12 +103,13 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(
         "startDate"
       ).innerHTML = `ΗΜΕΡΟΜΗΝΙΑ ΕΝΑΡΞΗΣ:${registrationDate}`;
-     const activityArray = data.arrayOfRgWsPublicFirmActRt_out.RgWsPublicFirmActRtUser;
-     activityArray.forEach(element => {
-        const itemHTML = `<div class="activity-item">${element.firmActCode} - ${element.firmActDescr} (${element.firmActKindDescr})`
-        const activityHTML = document.getElementById('activity').innerHTML
-        document.getElementById('activity').innerHTML = activityHTML + itemHTML
-     });
+      const activityArray =
+        data.arrayOfRgWsPublicFirmActRt_out.RgWsPublicFirmActRtUser;
+      activityArray.forEach((element) => {
+        const itemHTML = `<div class="activity-item">${element.firmActCode} - ${element.firmActDescr} (${element.firmActKindDescr})`;
+        const activityHTML = document.getElementById("activity").innerHTML;
+        document.getElementById("activity").innerHTML = activityHTML + itemHTML;
+      });
     }
   }
 });
