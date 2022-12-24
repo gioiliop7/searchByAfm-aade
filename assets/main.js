@@ -105,11 +105,22 @@ document.addEventListener("DOMContentLoaded", function () {
       ).innerHTML = `ΗΜΕΡΟΜΗΝΙΑ ΕΝΑΡΞΗΣ:${registrationDate}`;
       const activityArray =
         data.arrayOfRgWsPublicFirmActRt_out.RgWsPublicFirmActRtUser;
-      activityArray.forEach((element) => {
-        const itemHTML = `<div class="activity-item">${element.firmActCode} - ${element.firmActDescr} (${element.firmActKindDescr})`;
+      console;
+      const length = activityArray.length;
+      if (length > 0) {
+        document.getElementById("activity").innerHTML = "";
+        activityArray.forEach((element) => {
+          const itemHTML = `<div class="activity-item">${element.firmActCode} - ${element.firmActDescr} (${element.firmActKindDescr})`;
+          const activityHTML = document.getElementById("activity").innerHTML;
+          document.getElementById("activity").innerHTML =
+            activityHTML + itemHTML;
+        });
+      } else {
+        document.getElementById("activity").innerHTML = "";
+        const itemHTML = `<div class="activity-item">${activityArray.firmActCode} - ${activityArray.firmActDescr} (${activityArray.firmActKindDescr})`;
         const activityHTML = document.getElementById("activity").innerHTML;
         document.getElementById("activity").innerHTML = activityHTML + itemHTML;
-      });
+      }
     }
   }
 });

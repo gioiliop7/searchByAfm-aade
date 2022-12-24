@@ -1,7 +1,7 @@
 {
   "name": "findbyafm",
   "productName": "Search by Afm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Search a business by afm using AADE API",
   "main": "index.js",
   "scripts": {
