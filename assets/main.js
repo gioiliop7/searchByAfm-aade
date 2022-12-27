@@ -105,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ).innerHTML = `ΗΜΕΡΟΜΗΝΙΑ ΕΝΑΡΞΗΣ:${registrationDate}`;
       const activityArray =
         data.arrayOfRgWsPublicFirmActRt_out.RgWsPublicFirmActRtUser;
-      console;
       const length = activityArray.length;
       if (length > 0) {
         document.getElementById("activity").innerHTML = "";
